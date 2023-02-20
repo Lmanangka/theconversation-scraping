@@ -1,0 +1,6 @@
+beautifulsoup4
+tabulate
+pyshorteners
+textwrap
+requests
+argparse
