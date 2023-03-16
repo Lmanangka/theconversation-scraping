@@ -1,6 +1,9 @@
 beautifulsoup4
-tabulate
-pyshorteners
-textwrap
+time
 requests
 argparse
+sys
+curses
+subprocess
+textwrap
+webbrowser
