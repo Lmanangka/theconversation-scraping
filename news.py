@@ -1,3 +1,7 @@
+'''
+Author: Leonardo Rudolf Manangka
+Created: 16 March 2023
+'''
 from bs4 import BeautifulSoup
 from time import sleep
 import requests
