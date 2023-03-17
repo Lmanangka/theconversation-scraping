@@ -1,53 +1,88 @@
 # theconversation-scraping
 
-Web scraping new articles and podacast from The Conversation.
+A Python program to web scraping articles and podcasts titles from my
+favourite website [The Conversation](https://theconversation.com/id).
 
-## Usage
+## Installation
 
-- Installing dependencies
+1. Clone the repository:
+
+```sh
+git clone https://github.com/Lmanangka/theconversation-scraping.git
+```
+
+2. Navigate to the directory:
+
+```sh
+cd theconversation-scraping
+```
+
+3. Install the requirements:
 
 ```sh
 pip install -r requirements.txt
 ```
 
-- Show Help
+4. This program use mpv player to open and play selected podcast:
 
-```sh
-python news.py -h
-```
+    #### Linux
 
-or
+    - Debian/Ubuntu
 
-```sh
-python news.py --help
-```
+    ```sh
+    sudo apt install mpv
+    ```
 
-![Image of help text](https://github.com/Lmanangka/theconversation-scraping/blob/main/img/help_text.png?raw=true)
+    - Fedora
 
-- New articles
+    ```sh
+    sudo dnf  install mpv
+    ```
+
+    - Arch
+
+    ```sh
+    sudo pacman -S mpv
+    ```
+
+    - OpenSUSE
+
+    ```sh
+    sudo zypper install mpv
+    ```
+
+    #### Windows
+
+    - Download the Installation from the official website: https://mpv.io/installation/
+
+## Usage
+
+Run the program by executing the following command:
 
 ```sh
 python news.py -a
 ```
 
-or
-
-```sh
-python news.py --articles
-```
-
-![Image of new articles](https://github.com/Lmanangka/theconversation-scraping/blob/main/img/new_articles.png?raw=true)
-
-- New Podcast
+To display the podcasts titles, use the following command:
 
 ```sh
 python news.py -p
 ```
 
-or
+The program will display a menu with the articles or podcasts titles based on
+your choice. You can navigate the menu using the up dan down arrow keys or the
+**'j'** and **'k'** keys.  
+
+To select an item from the menu, press **'Enter'** or **'Return'**. If you
+selected a podcasts, the program will play the selected podcast using
+[mpv](https://mpv.io) player. If you selected an article, the program will open
+the article in your default wen browser.
+
+You can also limit the number of items displayed in the menu by using the
+**'l'** or **'--limit'** option. For example, to display only 5 items, use the
+use the following command:
 
 ```sh
-python news.py --podcasts
+python news.py -a -l 5
 ```
 
-![Image of new podacasts](https://github.com/Lmanangka/theconversation-scraping/blob/main/img/new_podcasts.png?raw=true)
