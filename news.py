@@ -13,6 +13,11 @@ import textwrap
 import webbrowser
 
 def user_input():
+    '''
+    Read user input using argparse from argument, let user choose to read an
+    articles or listening a podcasts and choose the titles how many titles will
+    be displayed.
+    '''
     parser = argparse.ArgumentParser(prog='news', description='Web scraping\
             articles title and podcasts title from my favourite website\
             The Conversation.', epilog='Example: news.py -a')
@@ -26,21 +31,28 @@ def user_input():
                               help='Show podcasts title and choose one\
                                       to open it.')
 
+    # Catch an error to limit the displayed titles to 20 items
     try:
         args = parser.parse_args()
         if args.limit > 20:
             sys.exit('The limit is 20 line.')
+    # Catch an error for wrong arguments
     except argparse.ArgumentError as error:
         sys.exit(f"Error: {str(error)}")
     return args
 
 def get_data(limit, articles=False, podcasts=False):
+    '''
+    Scrape the data from the website, first read the arguments. If articles or
+    podcasts is True it will scrape the titles and urls from the website.
+    '''
     URLS = {'articles': 'https://theconversation.com/id',
             'podcasts': 'https://theconversation.com/id/podcasts/suarakademia'}
     header = {'user-agent': 'BOT'}
     data = {'title':[], 'link':[]}
     url = URLS['articles'] if articles else URLS['podcasts']
 
+    # Catch an error if connection unavailable
     try:
         page = requests.get(url,headers=header).text
         soup = BeautifulSoup(page, 'html.parser')
@@ -63,6 +75,9 @@ def get_data(limit, articles=False, podcasts=False):
     return data
 
 def menu(stdscr, index_pos, data):
+    '''
+    Display the menu with titles as items.
+    '''
     stdscr.clear()
     height, width = stdscr.getmaxyx()
     for index, txt in enumerate(data):
@@ -70,12 +85,17 @@ def menu(stdscr, index_pos, data):
             stdscr.addnstr(0 + index, 0, '> ' + txt[:width-3], width - 1, curses.A_REVERSE)
             stdscr.addstr(height - 1, 0, 'ctrl-c to exit', curses.A_BLINK)
         else:
+            # Truncate items if title items is too long than window
             wrapped_txt = textwrap.wrap(txt, width - 2)
             for i, line in enumerate(wrapped_txt):
                 stdscr.addstr(0 + index + i, 0, line[:width-3] + '...' if len(line) > width - 3 else line)
     stdscr.refresh()
 
 def main(stdscr):
+    '''
+    Main program to execute the contents from the menu's items like open the
+    web browser fot articles and play the podcasts using mpv player.
+    '''
     try:
         curses.curs_set(0)
         curses.use_default_colors()
