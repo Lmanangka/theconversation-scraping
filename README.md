@@ -74,9 +74,22 @@ your choice. You can navigate the menu using the up dan down arrow keys or the
 **'j'** and **'k'** keys.  
 
 To select an item from the menu, press **'Enter'** or **'Return'**. If you
-selected a podcasts, the program will play the selected podcast using
-[mpv](https://mpv.io) player. If you selected an article, the program will open
-the article in your default wen browser.
+selected an article, the program will open the article in your default
+web browser. If you selected a podcasts, the program will play the selected
+podcast using [mpv](https://mpv.io) player.
+Here the keybinding for mpv player:
+
+Key Binding      | Function
+-----------------|---------------------------------------
+Space            | Pause/Play
+Left Arrow       | Seek backward 5 seconds
+Right Arrow      | Seek forward 5 seconds
+Up Arrow         | Seek forward 60 seconds
+Down Arrow       | Seek backward 60 seconds
+0                | Increase volume
+9                | Decrease volume
+M                | Mute/unmute
+Q                | Exit mpv
 
 You can also limit the number of items displayed in the menu by using the
 **'l'** or **'--limit'** option. For example, to display only 5 items, use the
